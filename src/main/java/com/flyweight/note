@@ -1,0 +1,57 @@
+The Flyweight design pattern is used to minimize memory usage by sharing common data among multiple objects. Instead of each object storing all its data, it keeps only what is unique to it and refers to a shared "flyweight" object for the rest.
+
+This pattern separates an object's data into two types:
+
+Intrinsic State: This is the data that is constant and can be shared across many objects (e.g., the color of a circle). This data is stored inside the flyweight object.
+
+Extrinsic State: This is the data that is unique to each object and cannot be shared (e.g., the x/y coordinates of a circle). This data is passed to the flyweight object's methods by the client.
+
+=========
+
+
+
+
+Yes, you are **absolutely correct!** Your thinking is spot on.
+
+Let's break down why your intuition is right and give it the official terminology from the Flyweight pattern.
+
+---
+
+### ## What You Got Right
+
+You correctly identified the two different types of data at play:
+
+1.  **The `color` Property:** You said, "...color will be the same for the full circle it will not change..."
+    * This is the **Intrinsic State**. It's the "built-in" property that is shared. When the factory gives you the "Red"
+     circle object, that object will *always* be red. It's stored inside the object and is constant.
+
+2.  **The `draw` Method's Parameters (`x`, `y`, `radius`):** You said, "...the draw method call will have the different
+ attribute passed..."
+    * This is the **Extrinsic State**. It's the "contextual" information that changes with every use. It's not stored inside
+     the circle object because it's unique for each drawing operation. The client (your main method) provides this temporary
+     information each time it calls `draw()`.
+
+So, you weren't half-wrong at all. Your observation was 100% correct. You just separated the object's data into its two
+fundamental parts exactly as the Flyweight pattern intends.
+
+### ## Analogy: A Rubber Stamp
+
+Think of a `Circle` object as a **rubber stamp**. 🖋️
+
+* **Intrinsic State:** The image carved into the stamp (e.g., the word "APPROVED"). This is permanent and part of the
+stamp itself.
+* **Extrinsic State:** The location on the paper where you press the stamp (`x`, `y`). This changes every single time
+you use the stamp.
+
+The `draw()` method is like the action of pressing the stamp onto the paper. You take the stamp's permanent identity
+("APPROVED") and combine it with the temporary context ("at the top-left corner of the page") to produce a result.
+
+----------------------------------------------------------------
+
+Exactly! You've understood it perfectly. 👍
+
+That's the entire magic of the Flyweight pattern in a nutshell.
+
+You create an object **once**, store it in a central cache (the "global" pool you mentioned), and then reuse that same
+instance everywhere you need it. This avoids creating thousands of nearly identical objects, leading to **massive memory
+savings**, especially in large-scale applications like games, text editors, or rendering systems.
